@@ -1,0 +1,29 @@
+use std::io;
+
+fn find_median(arr: &[i32]) -> f64 {
+    let n = arr.len();
+    if n % 2 == 0 {
+        // If array length is even
+        let middle_right = n / 2;
+        let middle_left = middle_right - 1;
+        return (arr[middle_left] + arr[middle_right]) as f64 / 2.0;
+    } else {
+        // If array length is odd
+        return arr[n / 2] as f64;
+    }
+}
+
+fn main() {
+    println!("Enter a sorted array of integers separated by spaces:");
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+
+    let arr: Vec<i32> = input
+        .trim()
+        .split_whitespace()
+        .map(|s| s.parse().expect("Failed to parse integer"))
+        .collect();
+
+    println!("Median of the array is: {}", find_median(&arr));
+}
