@@ -1,0 +1,22 @@
+use std::io;
+
+fn is_palindrome(s: &str) -> bool {
+    let s = s.to_lowercase(); // Convert string to lowercase for case-insensitive comparison
+    let reversed = s.chars().rev().collect::<String>(); // Reverse the string
+    s == reversed // Check if the original string is equal to the reversed string
+}
+
+fn main() {
+    println!("Enter a string to check if it's a palindrome:");
+    
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    
+    let input = input.trim(); // Remove trailing newline
+    
+    if is_palindrome(input) {
+        println!("'{}' is a palindrome.", input);
+    } else {
+        println!("'{}' is not a palindrome.", input);
+    }
+}
